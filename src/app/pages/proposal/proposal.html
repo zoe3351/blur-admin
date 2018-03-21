@@ -1,21 +1,78 @@
 <div class="widgets">
 
     <div class="row">
-        <div class="col-md-6">
-            <div
-                    ba-panel
-                    ba-panel-title="Standard Fields"
-                    ba-panel-class="with-scroll">
-                <div ng-include="'app/pages/form/inputs/widgets/standardFields.html'"></div>
-            </div>
+        <div class="col-md-4">
+            <uib-accordion>
+                <uib-accordion-group heading="Proposals" is-open="true" panel-class="panel-primary bootstrap-panel accordion-panel">
+                    <div class="horizontal-scroll" style="height: 400px;">
+                        <div ng-repeat="item in smartTableData">
+                            <div>
+                                <p>
+                                    <b>{{item.firstName}}</b>
+                                </p>
+                                <p>{{item.lastName}}</p>
+                                <p>{{item.username}}</p>
+                                <p>
+                                    <a class="email-link" ng-href="mailto:{{item.email}}">{{item.email}}</a>
+                                </p>
+                                <p>
+                                    <button class="status-button btn btn-xs btn-{{item.status}}">{{item.status}}</button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </uib-accordion-group>
+
+                <uib-accordion-group panel-class="panel-warning bootstrap-panel accordion-panel">
+                    <uib-accordion-heading>
+                        Create New Proposal
+                        <i class="pull-right ion-android-add-circle" style="color:red; background-size: 50px !important"></i>
+                    </uib-accordion-heading>
+                    <form>
+                        <div class="form-group">
+                            <label for="input01">Text</label>
+                            <input type="text" class="form-control" id="input01" placeholder="Text">
+                        </div>
+                        <div class="form-group">
+                            <label for="input02">Password</label>
+                            <input type="password" class="form-control" id="input02" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="input03">Rounded Corners</label>
+                            <input type="text" class="form-control form-control-rounded" id="input03" placeholder="Rounded Corners">
+                        </div>
+                        <div class="form-group">
+                            <label for="input04">With help</label>
+                            <input type="text" class="form-control" id="input04" placeholder="With help">
+                            <span class="help-block sub-little-text">A block of help text that breaks onto a new line and may extend beyond one line.</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="input05">Disabled Input</label>
+                            <input type="text" class="form-control" id="input05" placeholder="Disabled Input" disabled>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="textarea01">Textarea</label>
+                            <textarea placeholder="Default Input" class="form-control" id="textarea01"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" class="form-control input-sm" id="input2" placeholder="Small Input">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control input-lg" id="input4" placeholder="Large Input">
+                        </div>
+                        <button type="submit" class="btn btn-danger">Submit</button>
+                    </form>
+                </uib-accordion-group>
+            </uib-accordion>
+
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div ba-panel ba-panel-title="Google Maps" class="viewport100">
                 <div id="google-maps"></div>
             </div>
         </div>
     </div>
 </div>
-
-
