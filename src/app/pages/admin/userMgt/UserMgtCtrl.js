@@ -1,6 +1,6 @@
 /**
- * @author v.lugovksy
- * created on 16.12.2015
+ * @author Jin Dong
+ * created on 3/21/2018
  */
 (function () {
     'use strict';
@@ -9,95 +9,105 @@
         .controller('UserMgtCtrl', UserMgtCtrl);
 
     /** @ngInject */
-    function UserMgtCtrl($scope, $filter) {
+    function UserMgtCtrl($scope, $filter, $http) {
+
+        $scope.showAddedUser = false;
+        $scope.inserted = {
+            id: 0,
+            name: '',
+            type: null,
+            dist: null
+        };
+
+        $scope.smartTablePageSize = 10;
 
         $scope.users = [
             {
                 "id": 1,
                 "name": "Esther Vang",
-                "status": 4,
-                "group": 3
+                "type": 2,
+                "dist": 3
             },
             {
                 "id": 2,
                 "name": "Leah Freeman",
-                "status": 3,
-                "group": 1
+                "type": 2,
+                "dist": 1
             },
             {
                 "id": 3,
                 "name": "Mathews Simpson",
-                "status": 3,
-                "group": 2
+                "type": 1,
+                "dist": 2
             },
             {
                 "id": 4,
                 "name": "Buckley Hopkins",
-                "group": 4
+                "type": 1,
+                "dist": 4
             },
             {
                 "id": 5,
                 "name": "Buckley Schwartz",
-                "status": 1,
-                "group": 1
+                "type": 1,
+                "dist": 1
             },
             {
                 "id": 6,
                 "name": "Mathews Hopkins",
-                "status": 4,
-                "group": 2
+                "type": 1,
+                "dist": 2
             },
             {
                 "id": 7,
                 "name": "Leah Vang",
-                "status": 4,
-                "group": 1
+                "type": 2,
+                "dist": 1
             },
             {
                 "id": 8,
                 "name": "Vang Schwartz",
-                "status": 4,
-                "group": 2
+                "type": 1,
+                "dist": 2
             },
             {
                 "id": 9,
                 "name": "Hopkin Esther",
-                "status": 1,
-                "group": 2
+                "type": 1,
+                "dist": 2
             },
             {
                 "id": 10,
                 "name": "Mathews Schwartz",
-                "status": 1,
-                "group": 3
+                "type": 1,
+                "dist": 3
             }
         ];
 
 
-        $scope.statuses = [
-            { value: 1, text: 'Good' },
-            { value: 2, text: 'Awesome' },
-            { value: 3, text: 'Excellent' },
+        $scope.types = [
+            { value: 1, text: 'Normal' },
+            { value: 2, text: 'Volunteer' },
         ];
 
-        $scope.groups = [
-            { id: 1, text: 'user' },
-            { id: 2, text: 'customer' },
-            { id: 3, text: 'vip' },
-            { id: 4, text: 'admin' }
+        $scope.dists = [
+            { value: 1, text: 'District 1' },
+            { value: 2, text: 'District 2' },
+            { value: 3, text: 'District 3' },
+            { value: 4, text: 'District 4' }
         ];
 
-        $scope.showGroup = function (user) {
-            if (user.group && $scope.groups.length) {
-                var selected = $filter('filter')($scope.groups, { id: user.group });
+        $scope.showDist = function (user) {
+            if (user.dist && $scope.dists.length) {
+                var selected = $filter('filter')($scope.dists, { value: user.dist });
                 return selected.length ? selected[0].text : 'Not set';
             } else return 'Not set'
         };
 
-        $scope.showStatus = function (user) {
+        $scope.showType = function (user) {
             var selected = [];
-            if (user.status) {
-                selected = $filter('filter')($scope.statuses, { value: user.status });
+            if (user.type) {
+                selected = $filter('filter')($scope.types, { value: user.type });
             }
             return selected.length ? selected[0].text : 'Not set';
         };
@@ -106,17 +116,24 @@
         $scope.removeUser = function (index) {
             $scope.users.splice(index, 1);
         };
+        
 
         $scope.addUser = function () {
             $scope.inserted = {
                 id: $scope.users.length + 1,
                 name: '',
-                status: null,
-                group: null
+                type: null,
+                dist: null
             };
+            $scope.showAddedUser = true;
             $scope.users.push($scope.inserted);
         };
 
+        $scope.saveUser = function () {
+            console.log($scope.inserted);
+            $scope.showAddedUser = false;
+            $scope.inserted = null;
+        };
         
     }
 })();

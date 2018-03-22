@@ -14,8 +14,8 @@
 
   // main functional color scheme
   var colorScheme = {
-    primary: '#209e91',
-    info: '#2dacd1',
+    primary: '#2dacd1',
+    info: '#209e91',
     success: '#90b900',
     warning: '#dfb81c',
     danger: '#e85656',
@@ -23,8 +23,8 @@
 
   // dashboard colors for charts
   var dashboardColors = {
-    blueStone: '#005562',
-    surfieGreen: '#0e8174',
+    blueStone: '#2dacd1',
+    surfieGreen: '#209e91',
     silverTree: '#6eba8c',
     gossip: '#b9f2a1',
     white: '#10c4b5',
@@ -51,17 +51,17 @@
         warning: colorScheme.warning,
         danger: colorScheme.danger,
 
-        primaryLight: colorHelper.tint(colorScheme.primary, 30),
-        infoLight: colorHelper.tint(colorScheme.info, 30),
-        successLight: colorHelper.tint(colorScheme.success, 30),
-        warningLight: colorHelper.tint(colorScheme.warning, 30),
-        dangerLight: colorHelper.tint(colorScheme.danger, 30),
+        primaryLight: colorHelper.tint(colorScheme.primary, 100),
+        infoLight: colorHelper.tint(colorScheme.info, 100),
+        successLight: colorHelper.tint(colorScheme.success, 100),
+        warningLight: colorHelper.tint(colorScheme.warning, 100),
+        dangerLight: colorHelper.tint(colorScheme.danger, 100),
 
-        primaryDark: colorHelper.shade(colorScheme.primary, 15),
-        infoDark: colorHelper.shade(colorScheme.info, 15),
-        successDark: colorHelper.shade(colorScheme.success, 15),
-        warningDark: colorHelper.shade(colorScheme.warning, 15),
-        dangerDark: colorHelper.shade(colorScheme.danger, 15),
+        primaryDark: colorHelper.shade(colorScheme.primary, 0),
+        infoDark: colorHelper.shade(colorScheme.info, 0),
+        successDark: colorHelper.shade(colorScheme.success, 0),
+        warningDark: colorHelper.shade(colorScheme.warning, 0),
+        dangerDark: colorHelper.shade(colorScheme.danger, 0),
 
         dashboard: {
           blueStone: dashboardColors.blueStone,
