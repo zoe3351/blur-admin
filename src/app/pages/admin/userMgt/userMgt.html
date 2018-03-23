@@ -12,7 +12,7 @@
                     <button class="btn btn-primary" ng-click="addUser()">Add User</button>
                 </div>
 
-                <table class="table table-striped" st-table="displayedCollection" st-safe-src="users">
+                <table class="table table-striped" st-table="displayedCollection" st-safe-src="users" ng-if="users">
                     <thead>
                         <tr class="sortable ">
                             <th st-sort="id">ID</th>
@@ -47,60 +47,9 @@
                             </th>
                         </tr>
 
-
-
                     </thead>
                     <tbody>
-
-                        <tr class="editable-row" ng-repeat="user in displayedCollection" class="editable-row" ng-if="user == inserted" ng-show="true">
-                            <td>
-                                {{user.id }}
-                            </td>
-                            <td>
-                                <span editable-text="user.name" e-name="namea" e-form="addrowform" e-required>
-                                    {{user.name || empty}}
-                                </span>
-                            </td>
-                            <td>
-                                <span editable-text="user.email" e-name="emaila" e-form="addrowform" e-required>
-                                    {{user.email || empty}}
-                                </span>
-                            </td>
-                            <td>
-                                <span editable-text="user.phone" e-name="emaila" e-form="addrowform" e-required>
-                                    {{user.phone || empty}}
-                                </span>
-                            </td>
-                            <td class="select-td">
-                                <span editable-select="user.type" e-name="typea" e-form="addrowform" e-selectpicker e-ng-options="s.value as s.text for s in types">
-                                    {{showType(user) }}
-                                </span>
-                            </td>
-                            <td class="select-td">
-                                <span editable-select="user.dist" e-name="dista" e-form="addrowform" e-selectpicker e-ng-options="s.value as s.text for s in dists">
-                                    {{showDist(user) }}
-                                </span>
-                            </td>
-                            <td>
-                                <form editable-form name="addrowform" ng-show="addrowform.$visible" class="form-buttons form-inline" shown="true">
-                                    <button type="submit" ng-disabled="addrowform.$waiting" class="btn btn-primary editable-table-button btn-xs" ng-click="saveUser()">
-                                        Save
-                                    </button>
-                                    <button type="button" ng-disabled="addrowform.$waiting" ng-click="addrowform.$cancel()" class="btn btn-default editable-table-button btn-xs">
-                                        Cancel
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-
-
-
-
-
-
-
-
-                        <tr ng-repeat="user in displayedCollection" class="editable-row" ng-if="user != inserted">
+                        <tr ng-repeat="user in displayedCollection" class="editable-row">
                             <td>
                                 {{user.id }}
                             </td>

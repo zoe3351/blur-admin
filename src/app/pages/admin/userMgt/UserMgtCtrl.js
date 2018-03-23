@@ -9,9 +9,10 @@
         .controller('UserMgtCtrl', UserMgtCtrl);
 
     /** @ngInject */
-    function UserMgtCtrl($scope, $filter, $http) {
+    function UserMgtCtrl($scope, $filter, $http, userMgtService) {
 
         $scope.showAddedUser = false;
+
         $scope.inserted = {
             id: 0,
             name: '',
@@ -19,71 +20,7 @@
             dist: null
         };
 
-        $scope.smartTablePageSize = 10;
-
-        $scope.users = [
-            {
-                "id": 1,
-                "name": "Esther Vang",
-                "type": 2,
-                "dist": 3
-            },
-            {
-                "id": 2,
-                "name": "Leah Freeman",
-                "type": 2,
-                "dist": 1
-            },
-            {
-                "id": 3,
-                "name": "Mathews Simpson",
-                "type": 1,
-                "dist": 2
-            },
-            {
-                "id": 4,
-                "name": "Buckley Hopkins",
-                "type": 1,
-                "dist": 4
-            },
-            {
-                "id": 5,
-                "name": "Buckley Schwartz",
-                "type": 1,
-                "dist": 1
-            },
-            {
-                "id": 6,
-                "name": "Mathews Hopkins",
-                "type": 1,
-                "dist": 2
-            },
-            {
-                "id": 7,
-                "name": "Leah Vang",
-                "type": 2,
-                "dist": 1
-            },
-            {
-                "id": 8,
-                "name": "Vang Schwartz",
-                "type": 1,
-                "dist": 2
-            },
-            {
-                "id": 9,
-                "name": "Hopkin Esther",
-                "type": 1,
-                "dist": 2
-            },
-            {
-                "id": 10,
-                "name": "Mathews Schwartz",
-                "type": 1,
-                "dist": 3
-            }
-        ];
-
+        // $scope.users = [];
 
         $scope.types = [
             { value: 1, text: 'Normal' },
@@ -96,6 +33,9 @@
             { value: 3, text: 'District 3' },
             { value: 4, text: 'District 4' }
         ];
+
+
+        $scope.smartTablePageSize = 10;
 
         $scope.showDist = function (user) {
             if (user.dist && $scope.dists.length) {
@@ -116,7 +56,7 @@
         $scope.removeUser = function (index) {
             $scope.users.splice(index, 1);
         };
-        
+
 
         $scope.addUser = function () {
             $scope.inserted = {
@@ -134,6 +74,13 @@
             $scope.showAddedUser = false;
             $scope.inserted = null;
         };
-        
+
+        var init = () => {
+            $scope.users = userMgtService.users;
+            console.log('???');
+        }
+
+        init();
+
     }
 })();

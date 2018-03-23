@@ -25,6 +25,9 @@
                 url: '/userMgt',
                 templateUrl: 'app/pages/admin/userMgt/userMgt.html',
                 controller: 'UserMgtCtrl',
+                resolve:{
+                  '': function(userMgtService){return userMgtService.loadPromise;}
+                },
                 title: 'User Manage',
                 sidebarMeta: {
                   order: 0,
