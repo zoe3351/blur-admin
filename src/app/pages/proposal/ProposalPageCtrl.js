@@ -5,23 +5,55 @@
         .controller('ProposalPageCtrl', ProposalPageCtrl);
 
     /** @ngInject */
-    function ProposalPageCtrl($scope, $timeout, $filter) {
+    function ProposalPageCtrl($scope, $timeout, $filter, $uibModal) {
 
         function initialize() {
             var mapCanvas = document.getElementById('google-maps');
             var mapOptions = {
-              center: new google.maps.LatLng(44.5403, -78.5463),
-              zoom: 8,
-              mapTypeId: google.maps.MapTypeId.ROADMAP
+                center: new google.maps.LatLng(44.5403, -78.5463),
+                zoom: 8,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
             };
             var map = new google.maps.Map(mapCanvas, mapOptions);
-          }
-      
-          $timeout(function(){
+
+
+
+
+        }
+
+        $timeout(function () {
             initialize();
-          }, 100);
+        }, 100);
+
+        $scope.submitForm = function(isValid) {
+            // check to make sure the form is completely valid
+            if (isValid) { 
+                $scope.open('app/pages/proposal/thankyou.html', 'sm');
+            }
+        };
+
+        $scope.open = function (page, size) {
+            console.log($scope.newProposal);
+            $uibModal.open({
+                animation: true,
+                templateUrl: page,
+                size: size,
+                resolve: {
+                    items: function () {
+                        return $scope.items;
+                    }
+                }
+            });
+        };
 
         $scope.smartTablePageSize = 10;
+
+        $scope.newProposal = {
+            id: 0,
+            title: "",
+            idea: "",
+            location: ""
+        }
 
         $scope.smartTableData = [
             {

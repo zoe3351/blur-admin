@@ -26,43 +26,36 @@
                 <uib-accordion-group panel-class="panel-warning bootstrap-panel accordion-panel">
                     <uib-accordion-heading>
                         Create New Proposal
-                        <i class="pull-right ion-android-add-circle" style="color:red; background-size: 50px !important"></i>
                     </uib-accordion-heading>
-                    <form>
-                        <div class="form-group">
-                            <label for="input01">Text</label>
-                            <input type="text" class="form-control" id="input01" placeholder="Text">
+                    <form name="newProposalForm" ng-submit="submitForm(newProposalForm.$valid)" novalidate>
+                        
+                        <div class="form-group" ng-class="{ 'has-error' :newProposalForm.title.$invalid && !newProposalForm.title.$pristine}">
+                            <label for="title">Title*</label>
+                            <input ng-model="newProposal.title" type="text" name="title" class="form-control" id="title" placeholder="Title" ng-minlength="1" required>
+                            <p ng-show="newProposalForm.title.$invalid && !newProposalForm.title.$pristine" class="help-block">Title is required.</p>
                         </div>
-                        <div class="form-group">
-                            <label for="input02">Password</label>
-                            <input type="password" class="form-control" id="input02" placeholder="Password">
+                        
+                        <div class="form-group" ng-class="{ 'has-error' :newProposalForm.location.$invalid && !newProposalForm.location.$pristine}">
+                                <label for="location">Location*</label>
+                                <input ng-model="newProposal.location" type="text" name="location" class="form-control" id="title" placeholder="location" ng-minlength="1" required>
+                                <p ng-show="newProposalForm.location.$invalid && !newProposalForm.location.$pristine" class="help-block">Location is required.</p>
                         </div>
-                        <div class="form-group">
-                            <label for="input03">Rounded Corners</label>
-                            <input type="text" class="form-control form-control-rounded" id="input03" placeholder="Rounded Corners">
-                        </div>
-                        <div class="form-group">
-                            <label for="input04">With help</label>
-                            <input type="text" class="form-control" id="input04" placeholder="With help">
-                            <span class="help-block sub-little-text">A block of help text that breaks onto a new line and may extend beyond one line.</span>
-                        </div>
-                        <div class="form-group">
-                            <label for="input05">Disabled Input</label>
-                            <input type="text" class="form-control" id="input05" placeholder="Disabled Input" disabled>
+
+                        <div class="form-group" ng-class="{ 'has-error' :newProposalForm.idea.$invalid && !newProposalForm.idea.$pristine}">
+                            <label for="idea">Idea</label>
+                            <textarea style="height:200px;" ng-model="newProposal.idea" name="idea" placeholder="a few sentences describing what the project involves" class="form-control" id="idea" ng-minlength="1" required></textarea>
+                            <p ng-show="newProposalForm.idea.$invalid && !newProposalForm.idea.$pristine" class="help-block">Idea is required.</p>
                         </div>
 
                         <div class="form-group">
-                            <label for="textarea01">Textarea</label>
-                            <textarea placeholder="Default Input" class="form-control" id="textarea01"></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <input type="text" class="form-control input-sm" id="input2" placeholder="Small Input">
+                            <label for="need">Why is the project needed?</label>
+                            <input ng-model="newProposal.need" type="text" class="form-control" id="need" placeholder="Why is the project needed?">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control input-lg" id="input4" placeholder="Large Input">
+                            <label for="benefit">Who does the project benefit?</label>
+                            <input ng-model="newProposal.benefit" type="text" class="form-control" id="benefit" placeholder="Who does the project benefit?">
                         </div>
-                        <button type="submit" class="btn btn-danger">Submit</button>
+                        <button type="submit" class="btn btn-danger" >Submit</button>
                     </form>
                 </uib-accordion-group>
             </uib-accordion>

@@ -1,54 +1,194 @@
-<div class="widgets">
-
-    <div class="row">
-        <div class="col-md-12">
-            <div ba-panel ba-panel-title="Proposals" ba-panel-class="with-scroll">
-                <div class="add-row-editable-table">
-                    <button class="btn btn-primary" ng-click="addProposal()">Add Proposal</button>
+<div class="row">
+    <div class="col-md-12">
+        <div ba-panel ba-panel-title="Proposals" ba-panel-class="with-scroll">
+            <div class="horizontal-scroll">
+                <div class="form-group select-page-size-wrap ">
+                    <label>Rows on page
+                        <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+                        </select>
+                    </label>
                 </div>
-                <table class="table table-bordered table-hover table-condensed">
-                    <tr>
-                        <td>ID</td>
-                        <td>Title</td>
-                        <td>Idea</td>
-                        <td>Location</td>
-                        <td>Latitude</td>
-                        <td>Longitude</td>
-                    </tr>
-                    <tr ng-repeat="pro in proposals" class="editable-row">
-                        <td>
-                            {{$index}}
-                        </td>
-                        <td>
-                            <span editable-text="pro.name" e-name="name" e-form="rowform" e-required>
-                                {{ pro.title || 'empty' }}
-                            </span>
-                        </td>
-                        <td class="select-td">
-                            <span editable-select="pro.status" e-name="status" e-form="rowform" e-selectpicker e-ng-options="s.value as s.text for s in statuses">
-                                {{ showStatus(pro) }}
-                            </span>
-                        </td>
-                        <td class="select-td">
-                            <span editable-select="pro.group" e-name="group" onshow="loadGroups()" e-form="rowform" e-selectpicker e-ng-options="g.id as g.text for g in groups">
-                                {{ showGroup(pro) }}
-                            </span>
-                        </td>
-                        <td>
-                            <form editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == pro">
-                                <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary editable-table-button btn-xs">
-                                    Save
-                                </button>
-                                <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default editable-table-button btn-xs">
-                                    Cancel
-                                </button>
-                            </form>
-                            <div class="buttons" ng-show="!rowform.$visible">
-                                <button class="btn btn-primary editable-table-button btn-xs" ng-click="rowform.$show()">Edit</button>
-                                <button class="btn btn-danger editable-table-button btn-xs" ng-click="removeProposal($index)">Delete</button>
-                            </div>
-                        </td>
-                    </tr>
+
+                <table class="table table-condensed  table-striped" st-table="displayedCollection" st-safe-src="proposals" ng-if="proposals">
+                    <thead>
+                        <tr class="sortable ">
+                            <th></th>
+                            <th st-sort="no">No</th>
+                            <th st-sort="status">Status</th>
+                            <th st-sort="review1">Review1</th>
+                            <th st-sort="review2">Review2</th>
+                            <th st-sort="avg">Avg Score</th>
+                            <th st-sort="title">Title</th>
+                            <th st-sort="need">Need</th>
+                            <th st-sort="idea">Idea</th>
+                            <th st-sort="latitude">Latitude</th>
+                            <th st-sort="longitude">Longitude</th>
+                            <th st-sort="location">Location</th>
+                            <th st-sort="type">Type</th>
+                            <th st-sort="dept">Department</th>
+                            <th st-sort="dist">District</th>
+                            <th st-sort="neigh">Neighborhood</th>
+                            <th>Action</th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th>
+                                <input st-search="no" placeholder="Search Location" class="input-sm form-control search-input" type="search" />
+                            </th>
+                            <th>
+                                <input st-search="status" placeholder="Search ID" class="input-sm form-control search-input" type="search" />
+                            </th>
+                            <th>
+                                <input st-search="review1" placeholder="Search Title" class="input-sm form-control search-input" type="search" />
+                            </th>
+                            <th>
+                                <input st-search="review2" placeholder="Search Content" class="input-sm form-control search-input" type="search" />
+                            </th>
+                            <th>
+                                <input st-search="avg" placeholder="Search Location" class="input-sm form-control search-input" type="search" />
+                            </th>
+
+                            <th>
+                                <input st-search="title" placeholder="Search ID" class="input-sm form-control search-input" type="search" />
+                            </th>
+                            <th>
+                                <input st-search="need" placeholder="Search ID" class="input-sm form-control search-input" type="search" />
+                            </th>
+                            <th>
+                                <input st-search="idea" placeholder="Search ID" class="input-sm form-control search-input" type="search" />
+                            </th>
+                            <th>
+                                <input st-search="latitude" placeholder="Search ID" class="input-sm form-control search-input" type="search" />
+                            </th>
+                            <th>
+                                <input st-search="longitude" placeholder="Search ID" class="input-sm form-control search-input" type="search" />
+                            </th>
+                            <th>
+                                <input st-search="location" placeholder="Search ID" class="input-sm form-control search-input" type="search" />
+                            </th>
+                            <th>
+                                <input st-search="type" placeholder="Search ID" class="input-sm form-control search-input" type="search" />
+                            </th>
+                            <th>
+                                <input st-search="dept" placeholder="Search ID" class="input-sm form-control search-input" type="search" />
+                            </th>
+                            <th>
+                                <input st-search="dist" placeholder="Search ID" class="input-sm form-control search-input" type="search" />
+                            </th>
+                            <th>
+                                <input st-search="neigh" placeholder="Search ID" class="input-sm form-control search-input" type="search" />
+                            </th>
+                            <th>
+                                <input ng-if="false" />
+                            </th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        <div ng-repeat="proposal in displayedCollection">
+                        <tr class="clickable"  class="editable-row">
+                            <td>
+                                <button ng-if="proposal.expanded" ng-click="proposal.expanded = false" class="btn btn-xs btn-default glyphicon glyphicon-minus"></button>
+                                <button ng-if="!proposal.expanded" ng-click="proposal.expanded = true" class="btn btn-xs btn-default glyphicon glyphicon-plus"></button>
+                            </td>
+                            <td>
+                                <span editable-text="proposal.no" e-name="email" e-form="rowform" e-required>
+                                    {{proposal.no || 'empty' }}
+                                </span>
+                            </td>
+                            <td>
+                                <span editable-text="proposal.status" e-name="name" e-form="rowform" e-required>
+                                    {{proposal.status || 'empty' }}
+                                </span>
+                            </td>
+                            <td>
+                                <span editable-text="proposal.review1" e-name="name" e-form="rowform" e-required>
+                                    {{proposal.review1 || 'empty' }}
+                                </span>
+                            </td>
+                            <td>
+                                <span editable-text="proposal.review2" e-name="name" e-form="rowform" e-required>
+                                    {{proposal.review2 || 'empty' }}
+                                </span>
+                            </td>
+                            <td>
+                                <span editable-text="proposal.avg" e-name="email" e-form="rowform" e-required>
+                                    {{proposal.avg || 'empty' }}
+                                </span>
+                            </td>
+
+                            <td>
+                                <span editable-text="proposal.title" e-name="email" e-form="rowform" e-required>
+                                    {{proposal.title || 'empty' }}
+                                </span>
+                            </td>
+                            <td>
+                                <span editable-text="proposal.need" e-name="email" e-form="rowform" e-required>
+                                    {{proposal.need || 'empty' }}
+                                </span>
+                            </td>
+                            <td>
+                                <span editable-text="proposal.idea" e-name="email" e-form="rowform" e-required>
+                                    {{proposal.idea || 'empty' }}
+                                </span>
+                            </td>
+                            <td>
+                                <span editable-text="proposal.latitude" e-name="email" e-form="rowform" e-required>
+                                    {{proposal.latitude || 'empty' }}
+                                </span>
+                            </td>
+                            <td>
+                                <span editable-text="proposal.longitude" e-name="email" e-form="rowform" e-required>
+                                    {{proposal.longitude || 'empty' }}
+                                </span>
+                            </td>
+                            <td>
+                                <span editable-text="proposal.location" e-name="email" e-form="rowform" e-required>
+                                    {{proposal.location || 'empty' }}
+                                </span>
+                            </td>
+                            <td>
+                                <span editable-text="proposal.type" e-name="email" e-form="rowform" e-required>
+                                    {{proposal.type || 'empty' }}
+                                </span>
+                            </td>
+                            <td>
+                                <span editable-text="proposal.dept" e-name="email" e-form="rowform" e-required>
+                                    {{proposal.dept || 'empty' }}
+                                </span>
+                            </td>
+                            <td>
+                                <span editable-text="proposal.dist" e-name="email" e-form="rowform" e-required>
+                                    {{proposal.dist || 'empty' }}
+                                </span>
+                            </td>
+                            <td>
+                                <span editable-text="proposal.neigh" e-name="email" e-form="rowform" e-required>
+                                    {{proposal.neigh || 'empty' }}
+                                </span>
+                            </td>
+                            <td>
+                                <form editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" shown="rowform.$visible">
+                                    <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary editable-table-button btn-xs">
+                                        Save
+                                    </button>
+                                    <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default editable-table-button btn-xs">
+                                        Cancel
+                                    </button>
+                                </form>
+                                <div class="buttons" ng-show="!rowform.$visible">
+                                    <button class="btn btn-primary editable-table-button btn-xs" ng-click="rowform.$show()">Edit</button>
+                                    <button class="btn btn-danger editable-table-button btn-xs" ng-click="removeProposal($index)">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr ng-if="proposal.expanded" ng-repeat-end="">
+                                <span>
+                                    qw;oehfoqjfq;ernfkln vkljerbnvi;wejbnvoeqjrfgoq[ejf[pqwejf]]
+                                </span>
+                        </tr>
+                    </div>
+                    </tbody>
                     <tfoot>
                         <tr>
                             <td colspan="6" class="text-center">
@@ -56,7 +196,11 @@
                             </td>
                         </tr>
                     </tfoot>
+
                 </table>
+
+
+
             </div>
         </div>
     </div>

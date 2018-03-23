@@ -9,7 +9,7 @@
         .controller('UserMgtCtrl', UserMgtCtrl);
 
     /** @ngInject */
-    function UserMgtCtrl($scope, $filter, $http, userMgtService) {
+    function UserMgtCtrl($scope, $filter, $http, UserMgtService) {
 
         $scope.showAddedUser = false;
 
@@ -75,8 +75,8 @@
             $scope.inserted = null;
         };
 
-        var init = () => {
-            $scope.users = userMgtService.users;
+        var init = function () {
+            $scope.users = UserMgtService.users;
             console.log('???');
         }
 

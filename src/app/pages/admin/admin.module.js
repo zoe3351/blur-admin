@@ -26,7 +26,7 @@
                 templateUrl: 'app/pages/admin/userMgt/userMgt.html',
                 controller: 'UserMgtCtrl',
                 resolve:{
-                  '': function(userMgtService){return userMgtService.loadPromise;}
+                  '': function(UserMgtService){return UserMgtService.loadPromise;}
                 },
                 title: 'User Manage',
                 sidebarMeta: {
@@ -37,6 +37,9 @@
                 url: '/proposalMgt',
                 templateUrl: 'app/pages/admin/proposalMgt/proposalMgt.html',
                 controller: 'ProposalMgtCtrl',
+                resolve:{
+                  '': function(ProposalMgtService){return ProposalMgtService.loadPromise;}
+                },
                 title: 'Proposal Manage',
                 sidebarMeta: {
                   order: 10,
