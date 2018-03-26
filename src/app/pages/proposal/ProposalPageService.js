@@ -1,10 +1,10 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.admin')
-        .service('ProposalMgtService', ProposalMgtService);
+    angular.module('BlurAdmin.pages.proposal')
+        .service('ProposalPageService', ProposalPageService);
 
-    function ProposalMgtService($http){
+    function ProposalPageService($http){
         var self = this;
 
         this.loadPromise = $http({
@@ -16,6 +16,7 @@
         }, function errorCallback(response) {
             console.log("failed!");
         });
+
     }
 
 })();

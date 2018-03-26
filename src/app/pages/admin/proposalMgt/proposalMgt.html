@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <div ba-panel ba-panel-title="Proposals" ba-panel-class="with-scroll">
+        <div ba-panel ba-panel-title="All Proposals" ba-panel-class="with-scroll">
             <div class="horizontal-scroll">
                 <div class="form-group select-page-size-wrap ">
                     <label>Rows on page
@@ -12,7 +12,6 @@
                 <table class="table table-condensed  table-striped" st-table="displayedCollection" st-safe-src="proposals" ng-if="proposals">
                     <thead>
                         <tr class="sortable ">
-                            <th></th>
                             <th st-sort="no">No</th>
                             <th st-sort="status">Status</th>
                             <th st-sort="review1">Review1</th>
@@ -31,7 +30,6 @@
                             <th>Action</th>
                         </tr>
                         <tr>
-                            <th></th>
                             <th>
                                 <input st-search="no" placeholder="Search Location" class="input-sm form-control search-input" type="search" />
                             </th>
@@ -85,12 +83,7 @@
 
                     </thead>
                     <tbody>
-                        <div ng-repeat="proposal in displayedCollection">
-                        <tr class="clickable"  class="editable-row">
-                            <td>
-                                <button ng-if="proposal.expanded" ng-click="proposal.expanded = false" class="btn btn-xs btn-default glyphicon glyphicon-minus"></button>
-                                <button ng-if="!proposal.expanded" ng-click="proposal.expanded = true" class="btn btn-xs btn-default glyphicon glyphicon-plus"></button>
-                            </td>
+                        <tr class="clickable" class="editable-row" ng-repeat="proposal in displayedCollection">
                             <td>
                                 <span editable-text="proposal.no" e-name="email" e-form="rowform" e-required>
                                     {{proposal.no || 'empty' }}
@@ -182,12 +175,6 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr ng-if="proposal.expanded" ng-repeat-end="">
-                                <span>
-                                    qw;oehfoqjfq;ernfkln vkljerbnvi;wejbnvoeqjrfgoq[ejf[pqwejf]]
-                                </span>
-                        </tr>
-                    </div>
                     </tbody>
                     <tfoot>
                         <tr>

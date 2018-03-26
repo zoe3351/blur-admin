@@ -5,7 +5,7 @@
         .controller('ProposalPageCtrl', ProposalPageCtrl);
 
     /** @ngInject */
-    function ProposalPageCtrl($scope, $timeout, $filter, $uibModal) {
+    function ProposalPageCtrl($scope, $timeout, $filter, $uibModal, ProposalPageService) {
 
         function initialize() {
             var mapCanvas = document.getElementById('google-maps');
@@ -15,10 +15,8 @@
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
             var map = new google.maps.Map(mapCanvas, mapOptions);
-
-
-
-
+            $scope.proposals = ProposalPageService.proposals;
+            console.log($scope.proposals);
         }
 
         $timeout(function () {

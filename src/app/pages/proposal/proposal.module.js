@@ -14,6 +14,9 @@
                 url: '/proposal',
                 templateUrl: 'app/pages/proposal/proposal.html',
                 controller: 'ProposalPageCtrl',
+                resolve:{
+                    '': function(ProposalPageService){return ProposalPageService.loadPromise;}
+                  },
                 title: 'Proposal',
                 sidebarMeta: {
                     icon: 'ion-document',

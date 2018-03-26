@@ -30,7 +30,7 @@
 
         var init = function() {
             $scope.proposals = ProposalMgtService.proposals;
-            console.log('???');
+            console.log($scope.proposals);
         }
 
         init();

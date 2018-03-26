@@ -5,19 +5,25 @@
             <uib-accordion>
                 <uib-accordion-group heading="Proposals" is-open="true" panel-class="panel-primary bootstrap-panel accordion-panel">
                     <div class="horizontal-scroll" style="height: 400px;">
-                        <div ng-repeat="item in smartTableData">
-                            <div>
-                                <p>
-                                    <b>{{item.firstName}}</b>
-                                </p>
-                                <p>{{item.lastName}}</p>
-                                <p>{{item.username}}</p>
-                                <p>
-                                    <a class="email-link" ng-href="mailto:{{item.email}}">{{item.email}}</a>
-                                </p>
-                                <p>
-                                    <button class="status-button btn btn-xs btn-{{item.status}}">{{item.status}}</button>
-                                </p>
+                        <div ng-repeat="proposal in proposals">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                        {{proposal.title}}
+                                </div>
+                                <div class="panel-body">
+                                        <p>
+                                            <b>No: </b>{{proposal.no}}
+                                        </p>
+                                        <p>
+                                            <b>Idea: </b>{{proposal.idea}}
+                                        </p>
+                                        <p>
+                                            <button class="btn btn-warning btn-raised">VOTE</button>
+                                        </p>
+                                        <p>
+                                                <button class="btn btn-warning btn-raised">GRADE</button>
+                                        </p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -28,22 +34,25 @@
                         Create New Proposal
                     </uib-accordion-heading>
                     <form name="newProposalForm" ng-submit="submitForm(newProposalForm.$valid)" novalidate>
-                        
+
                         <div class="form-group" ng-class="{ 'has-error' :newProposalForm.title.$invalid && !newProposalForm.title.$pristine}">
                             <label for="title">Title*</label>
-                            <input ng-model="newProposal.title" type="text" name="title" class="form-control" id="title" placeholder="Title" ng-minlength="1" required>
+                            <input ng-model="newProposal.title" type="text" name="title" class="form-control" id="title" placeholder="Title" ng-minlength="1"
+                                required>
                             <p ng-show="newProposalForm.title.$invalid && !newProposalForm.title.$pristine" class="help-block">Title is required.</p>
                         </div>
-                        
+
                         <div class="form-group" ng-class="{ 'has-error' :newProposalForm.location.$invalid && !newProposalForm.location.$pristine}">
-                                <label for="location">Location*</label>
-                                <input ng-model="newProposal.location" type="text" name="location" class="form-control" id="title" placeholder="location" ng-minlength="1" required>
-                                <p ng-show="newProposalForm.location.$invalid && !newProposalForm.location.$pristine" class="help-block">Location is required.</p>
+                            <label for="location">Location*</label>
+                            <input ng-model="newProposal.location" type="text" name="location" class="form-control" id="title" placeholder="location"
+                                ng-minlength="1" required>
+                            <p ng-show="newProposalForm.location.$invalid && !newProposalForm.location.$pristine" class="help-block">Location is required.</p>
                         </div>
 
                         <div class="form-group" ng-class="{ 'has-error' :newProposalForm.idea.$invalid && !newProposalForm.idea.$pristine}">
                             <label for="idea">Idea</label>
-                            <textarea style="height:200px;" ng-model="newProposal.idea" name="idea" placeholder="a few sentences describing what the project involves" class="form-control" id="idea" ng-minlength="1" required></textarea>
+                            <textarea style="height:200px;" ng-model="newProposal.idea" name="idea" placeholder="a few sentences describing what the project involves"
+                                class="form-control" id="idea" ng-minlength="1" required></textarea>
                             <p ng-show="newProposalForm.idea.$invalid && !newProposalForm.idea.$pristine" class="help-block">Idea is required.</p>
                         </div>
 
@@ -55,7 +64,7 @@
                             <label for="benefit">Who does the project benefit?</label>
                             <input ng-model="newProposal.benefit" type="text" class="form-control" id="benefit" placeholder="Who does the project benefit?">
                         </div>
-                        <button type="submit" class="btn btn-danger" >Submit</button>
+                        <button type="submit" class="btn btn-danger">Submit</button>
                     </form>
                 </uib-accordion-group>
             </uib-accordion>
