@@ -70,14 +70,12 @@
         };
 
         $scope.saveUser = function () {
-            console.log($scope.inserted);
             $scope.showAddedUser = false;
             $scope.inserted = null;
         };
 
         var init = function () {
             $scope.users = UserMgtService.users;
-            console.log('???');
         }
 
         init();
